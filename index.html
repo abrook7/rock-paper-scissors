@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        function computerPlay() {
+            let  rand_num = Math.round(Math.random()*100);
+            if (rand_num % 3 == 0) {
+                return 'rock';
+            } else if (rand_num % 3 == 1){
+                return 'paper';
+            } else {
+                return 'scissors';
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            let p_select = playerSelection.toLowerCase();
+            if (p_select == computerSelection) {
+                return 'Draw';
+            } else if (p_select == 'rock') {
+                return computerSelection == 'paper' ? 'Lose' : 'Win';
+            } else if (p_select == 'paper') {
+                return computerSelection == 'scissors' ? 'Lose' : 'Win';
+            } else if (p_select == 'scissors') {
+                return computerSelection == 'rock' ? 'Lose' : 'Win';
+            } else {
+                return 'Error';
+            }
+        }
+
+        function game() {
+            /*let userInput = prompt();*/
+            let playerScore = 0;
+            let computerScore = 0;
+            for (let i = 0; i < 5; i++) {
+                let playerMove = prompt('What is your move? rock, paper, or scissors...');
+                let winOrLose = playRound(playerMove,computerPlay());
+                if (winOrLose == 'Win') {
+                    ++playerScore;
+                } else {
+                    ++computerScore;
+                }
+                console.log(`You ${winOrLose} this round. The score is ${playerScore} : ${computerScore}.`);
+            }
+        }
+    </script>
+    
+</body>
+</html>
